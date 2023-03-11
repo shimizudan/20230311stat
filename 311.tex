@@ -1,0 +1,227 @@
+\documentclass[b5paper]{jlreq}  % 文章クラスとオプション設定
+
+\usepackage[top=1cm,bottom=.8cm,left=1cm,right=1cm,foot=.5cm]{geometry}%用紙設定
+\pagestyle{empty}%ページを出力しない%
+\pagestyle{empty}%ページを出力しない%
+\usepackage{luatexja}
+\usepackage{tcolorbox}
+\usepackage{ulem}%下線，波線，取り消し線など
+\usepackage{tabularx}%伸びる表
+\usepackage{emgyouretu}
+%\usepackage{emathMw}
+\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage{tikz-3dplot}
+%\tdplotsetmaincoords{70}{115}
+\usepackage{graphicx,color}% 
+\usepackage{emath}
+\usepackage{emathPs}% 
+\usepackage{emathT}
+%\usepackage[hiragino-pro]{luatexja-preset}
+\usepackage[bizud]{luatexja-preset}
+%\usepackage[shortlabels,inline]{enumitem}
+
+%%箇条書き環境
+% \setlist{noitemsep}
+% \setlist[enumerate]{leftmargin=*}
+% \setlist[enumerate,1]{label=\large\textbf{\arabic*.\hspace{.5cm}}, ref=rabic*}
+% \setlist[enumerate,2]{label={(\arabic*)\hspace{.5cm}}, ref={(\arabic*)}}
+% \setlist[enumerate,3]{label={\roman*)\hspace{.5cm}}, ref={\roman*)}}
+
+\def\labelenumi{\Large\textbf\theenumi. }
+\def\theenumii{\arabic{enumii}}
+\def\labelenumii{(\theenumii)}
+\def\theenumiii{\roman{enumiii}}
+\def\labelenumiii{(\theenumiii )}%問題番号
+
+\usepackage{hako}%ハコ環境
+\usepackage{multicol}%段落環境
+\setlength{\columnsep}{1cm}%段落間隔
+%\setlength{\columnseprule}{0.4pt}
+%\usepackage[continue]{emathAe}%解答環境
+%\usepackage{type1cm}% PS, PDF 作成には必要
+%\usepackage[debug]{emathPs}%描画eps作成
+\usepackage{showexample}%\itemboxなど
+
+% \def\thesection{No. \arabic{section}}
+% \def\Name#1{\section{\large\bf #1\hfill\underline{ \hspace{1zw}年\hspace{2zw}組\hspace{2zw}番名前\hspace{12zw}}}}
+
+%%%%%太字%%%%
+%\def\bf{\gtfamily\bfseries}
+\usepackage[e]{esvect} % パッケージをインクルード
+\newcommand{\Beku}[1]{{\vv{\mathstrut #1 }}}
+\renewcommand{\bekutoru}[1]{{\vv{\mathrm{#1}}}}
+%問題・解答・コメントの表示・非表示
+
+%\newif\ifquestion\questionfalse
+\newif\ifquestion\questiontrue
+
+\newif\ifanswer\answerfalse
+%\newif\ifanswer\answertrue
+
+%\newif\ifcomment\commentfalse
+\newif\ifcomment\commenttrue
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{}
+
+\begin{document}
+
+\begin{tcolorbox}[title= 現代数理統計学の基礎 第2章　問12 ,fonttitle=\gtfamily\sffamily\bfseries,colframe=black!50,colback=black!3]
+    $X$の確率密度関数が$f(x)=1$，$0<x<1$，で与えられている。
+
+    \begin{enumerate}[(1)\hspace{5mm}]
+        \item $X$の積率母関数を求め，平均と分散を与えよ。
+        \item $Y=X^2$なる変数変換したときの$Y$の確率密度関数を求め，その平均と分散を計算せよ。
+        \item $Y=-\log(X)$なる変数変換したときの$Y$の確率密度関数を求め，その平均と分散を計算せよ。
+        \item $\sigma>0$に対して$Y=\sigma X+\mu$なる変数変換をするとき，$Y$の確率密度関数，積率母関数，平均と分散を計算せよ。
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{enumerate}[(1)\hspace{5mm}]
+    \item $\begin{aligned}
+        \bm{M_X(t)}&=E\left[e^{tx}\right]
+        =\dint01e^{tx}f(x)dx
+        =\dint01e^{tx}dx
+        =\teisekibun{\dfrac{e^{tx}}{t}}01
+        =\bm{\dfrac{e^t-1}t}\end{aligned}$\\
+    
+    
+        
+    
+    
+    $\begin{aligned}
+        \bunsuu{d}{dt}M_X(t)&
+        =\dfrac{e^t(t-1)+1}{t^2}\\
+        \bm{E[X]}&=\lim_{t\to0}\dfrac{d}{dt}M_X(t)
+        =\lim_{t\to0}\dfrac{e^t(t-1)+1}{t^2}
+        =\lim_{t\to0}\dfrac{\teisei{t}e^t}{2\teisei{t}}
+        =\bm{\bunsuu12}
+    \end{aligned}$\\
+        
+    
+    
+    
+    
+    $\begin{aligned}
+        \bunsuu{d^2}{dt^2}M_X(t)&
+        =\dfrac{e^t(t^2-2t+2)-2}{t^3}\\
+        E[X^2]&=\lim_{t\to0}\dfrac{d^2}{dt^2}M_X(t)
+        =\lim_{t\to0}\dfrac{e^t(t^2-2t+2)-2}{t^3}
+        =\lim_{t\to0}\dfrac{\teisei{t^2}e^t}{3\teisei{t^2}}
+        =\bunsuu13\\
+        \bm{\textbf{Var}(X)}&=E[X^2]-\left(E[X]\right)^2
+        =\bunsuu13-\bunsuu14=\bm{\bunsuu1{12}}
+    \end{aligned}$\\
+
+
+    \item $y=g(x)=x^2\quad(0<x<1)$とすると，$g^{-1}(y)=\sqrt y$，$x:0\to 1$のとき，$y:0\to 1$\\
+    
+    $f_X(x)=f(x)=1$として，\\
+
+    $\begin{aligned}
+        \bm{f_Y(y)}&=f_X\left(\sqrt y\right)\cdot\zettaiti{\left(\sqrt y\right)'}
+        =1\cdot\bunsuu1{2\sqrt y}=\bm{\bunsuu1{2\sqrt y}}\end{aligned}$\\
+    
+    
+    $\begin{aligned}
+        \bm{E[Y]}&=E\left[X^2\right]
+        =\bm{\bunsuu13}\end{aligned}$\\
+
+
+
+    $\begin{aligned}
+        \text{Var}(Y)&=E\left[Y^2\right]-\left(E[Y]\right)^2=E\left[X^4\right]-\left(E[X^2]\right)^2
+    \end{aligned}$\\
+
+
+
+    
+    $\begin{aligned}
+        \bunsuu{d^3}{dt^3}M_X(t)&
+        =\dfrac{e^t(t^3-3t^2+6t-6)+6}{t^4}\\
+        \bunsuu{d^4}{dt^4}M_X(t)&
+        =\dfrac{e^t(t^4-4t^3+12t^2-24t+24)-24}{t^5}\\
+        E[X^4]&=\lim_{t\to0}\dfrac{d^4}{dt^4}M_X(t)
+        =\lim_{t\to0}\dfrac{e^t(t^4-4t^3+12t^2-24t+24)-24}{t^5}
+        =\lim_{t\to0}\dfrac{\teisei{t^4}e^t}{5\teisei{t^4}}
+        =\bunsuu15\\
+        \bm{\textbf{Var}(Y)}&=\bunsuu15-\bunsuu19=\bm{\bunsuu4{45}}
+    \end{aligned}$
+
+
+\newpage
+
+    \item $y=g(x)=-\log x\quad(0<x<1)$とすると，$g^{-1}(y)=e^{-y}$\\
+    
+    $x:0\to 1$のとき，$y:\infty\to 0$\\
+    
+    $f_X(x)=f(x)=1$として，\\
+
+    $\begin{aligned}
+        \bm{f_Y(y)}&=f_X\left(e^{-y}\right)\cdot\zettaiti{\left(e^{-y}\right)'}
+        =1\cdot e^{-y}=\bm{e^{-y}}\end{aligned}$\\
+    
+    
+    $\begin{aligned}
+        M_Y(t)&
+        =\dint0\infty e^{ty}e^{-y}dy
+        =\dint0\infty e^{(t-1)y}dy
+        =\teisekibun{\dfrac{e^{(t-1)y}}{t-1}}0\infty
+        =\bunsuu1{1-t}\quad (t<1)\end{aligned}$\\
+    
+     
+    
+    $\begin{aligned}
+        \bm{E[Y]}&=\bunsuu{d}{dt}M_Y(t)\bigg|_{t=0}=\bunsuu{d}{dt}(1-t)^{-1}\bigg|_{t=0}
+        =(1-t)^{-2}\bigg|_{t=0}=\bm{1}\\
+        E[Y^2]&=\bunsuu{d^2}{dt^2}M_Y(t)\bigg|_{t=0}=\bunsuu{d}{dt}(1-t)^{-2}\bigg|_{t=0}
+        =2(1-t)^{-3}\bigg|_{t=0}=2
+    \end{aligned}$\\
+
+
+    $\begin{aligned}
+        \bm{\textbf{Var}(Y)}&=E\left[Y^2\right]-\left(E[Y]\right)^2=2-1^2=\bm{1}
+    \end{aligned}$\\
+
+
+
+
+
+\item $y=g(x)=\sigma x+\mu\quad(0<x<1)$とすると，$g^{-1}(y)=\bunsuu{y-\mu}{\sigma}$\\
+
+$x:0\to 1$のとき，$y:\mu\to \mu+\sigma$\\
+
+$f_X(x)=f(x)=1$として，\\
+
+$\begin{aligned}
+    \bm{f_Y(y)}&=f_X\left(\bunsuu{y-\mu}{\sigma}\right)\cdot\zettaiti{\left(\bunsuu{y-\mu}{\sigma}\right)'}
+    =1\cdot \bunsuu1\sigma=\bm{\bunsuu1\sigma}\end{aligned}$\\
+
+
+$\begin{aligned}
+    \bm{M_Y(t)}&
+    =\dint\mu{\mu+\sigma} e^{ty}\cdot\bunsuu1\sigma dy
+    =\teisekibun{\bunsuu{e^{ty}}{t\sigma}}\mu{\mu+\sigma}
+    =\bm{\bunsuu{e^{t(\mu+\sigma)}-e^{t\mu}}{t\sigma}}\end{aligned}$\\
+
+    
+
+$\begin{aligned}
+    \bm{E[Y]}&=E[\sigma X+\mu]
+    =\sigma E[X]+\mu=\bm{\bunsuu{\sigma}2+\mu}
+\end{aligned}$\\
+
+
+$\begin{aligned}
+    \bm{\textbf{Var}(Y)}&=\text{Var}(\sigma X+\mu)
+    =\sigma^2\text{Var}(X)=\bm{\bunsuu{\sigma^2}{12}}
+\end{aligned}$\\
+
+
+
+\end{enumerate}
+
+    
+
+            
+\end{document}
